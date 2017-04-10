@@ -7,21 +7,27 @@ export default class Topbar extends React.Component {
 
   constructor(props, context) {
     super(props, context)
-    this.state = { url: props.specSelectors.url() }
+    this.state = {
+      specs: []
+    }
+    this.setSpecs = this.setSpecs.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ url: nextProps.specSelectors.url() })
+  setSpecs(json) {
+    this.setState({ specs: json }, this.onUrlChange({target: {value: json[0]}}))
+  }
+
+  componentDidMount() {
+    fetch('/specs/list_specs.json')
+      .then(function(response) { return response.json() })
+      .then(this.setSpecs)
   }
 
   onUrlChange =(e)=> {
     let {target: {value}} = e
-    this.setState({url: value})
-  }
-
-  downloadUrl = () => {
-    this.props.specActions.updateUrl(this.state.url)
-    this.props.specActions.download(this.state.url)
+    let url = "/specs/" + value
+    this.props.specActions.updateUrl(url)
+    this.props.specActions.download(url)
   }
 
   render() {
@@ -44,8 +50,11 @@ export default class Topbar extends React.Component {
                 <span>swagger</span>
               </Link>
               <div className="download-url-wrapper">
-                <input className="download-url-input" type="text" onChange={ this.onUrlChange } value={this.state.url} disabled={isLoading} style={inputStyle} />
-                <Button className="download-url-button" onClick={ this.downloadUrl }>Explore</Button>
+                <select onChange={ this.onUrlChange }>
+                  {this.state.specs.map(function(spec){
+                    return <option value={spec}>{spec}</option>;
+                  })}
+                </select>
               </div>
             </div>
           </div>
