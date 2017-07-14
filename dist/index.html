@@ -70,24 +70,30 @@
 <script src="./swagger-ui-bundle.js"> </script>
 <script src="./swagger-ui-standalone-preset.js"> </script>
 <script>
-window.onload = function() {
-  
-  // Build a system
-  const ui = SwaggerUIBundle({
-    url: "http://petstore.swagger.io/v2/swagger.json",
-    dom_id: '#swagger-ui',
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: "StandaloneLayout"
-  })
-
-  window.ui = ui
-}
+  window.onload = function () {
+    // Build a system
+    var ui = {}
+    fetch('/specs/list_specs.json')
+      .then(function (response) {
+        return response.json()
+      }).then(function (json) {
+        ui = SwaggerUIBundle({
+          url: null,
+          validatorUrl: null,
+          urls: json,
+          dom_id: '#swagger-ui',
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+          ],
+          plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+          ],
+          layout: 'StandaloneLayout'
+        })
+    })
+    window.ui = ui
+  }
 </script>
 </body>
 
