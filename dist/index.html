@@ -73,18 +73,27 @@
 window.onload = function() {
   
   // Build a system
-  const ui = SwaggerUIBundle({
-    url: "http://petstore.swagger.io/v2/swagger.json",
-    dom_id: '#swagger-ui',
-    deepLinking: true,
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: "StandaloneLayout"
+  var ui = {}
+
+  fetch('/specs/list_specs.json')
+    .then(function (response) {
+      return response.json()
+    }).then(function (json) {
+      ui = SwaggerUIBundle({
+        url: null,
+        validatorUrl: null,
+        urls: json,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      })
   })
 
   window.ui = ui
