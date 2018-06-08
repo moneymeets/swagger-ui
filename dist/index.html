@@ -39,9 +39,18 @@
     <script>
     window.onload = function() {
 
+      var ui = {}
+
+      fetch('/specs/list_specs.json')
+        .then(function (response) {
+          return response.json()
+        }).then(function (json) {
+
       // Build a system
-      const ui = SwaggerUIBundle({
-        url: "http://petstore.swagger.io/v2/swagger.json",
+      ui = SwaggerUIBundle({
+        url: null,
+        urls: json,
+        validatorUrl: null,
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
@@ -52,6 +61,8 @@
           SwaggerUIBundle.plugins.DownloadUrl
         ],
         layout: "StandaloneLayout"
+      })
+
       })
 
       window.ui = ui
