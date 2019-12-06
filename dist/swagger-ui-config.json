@@ -1,0 +1,43 @@
+{
+  "urls": [
+    {
+      "url": "https://api.dev.moneymeets.net/insurance/static/specs/insurance/api.yml",
+      "name": "insurance-api-dev"
+    },
+    {
+      "url": "http://localhost:18000/insurance/static/specs/insurance/api.yml",
+      "name": "insurance-api-local"
+    },
+    {
+      "url": "https://api.dev.moneymeets.net/insurance/static/specs/fub-xpert/api.yml",
+      "name": "fub-xpert-live"
+    },
+    {
+      "url": "https://api.dev.moneymeets.net/profile/static/specs/profile/api.yml",
+      "name": "profile-api-dev"
+    },
+    {
+      "url": "http://localhost:28000/profile/static/specs/profile/api.yml",
+      "name": "profile-api-local"
+    },
+
+    {
+      "url": "https://api.dev.moneymeets.net/securities/static/specs/securities/api.yml",
+      "name": "securities-api-dev"
+    },
+    {
+      "url": "http://localhost:8000/securities/static/specs/securities/api.yml",
+      "name": "securities-api-local"
+    }
+
+  ],
+  "urls.primaryName": "insurance-api-dev",
+  "dom_id": "#swagger-ui",
+  "deepLinking": true,
+  "displayRequestDuration": true,
+  "filter": false,
+  "showCommonExtensions": true,
+  "docExpansion": "none",
+  "layout": "StandaloneLayout",
+  "validatorUrl": false
+}
