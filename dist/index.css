@@ -14,3 +14,17 @@ body {
     margin: 0;
     background: #fafafa;
 }
+/* moneymeets override */
+.topbar-wrapper img {
+    visibility: hidden;
+}
+.topbar-wrapper a {
+    background-image: url(https://moneymeets.com/images/moneymeets-logo.svg);
+    background-repeat: no-repeat;
+}
+.topbar-wrapper label span {
+    visibility: hidden;
+}
+.swagger-ui .topbar {
+    background-color: #ffffff;
+}

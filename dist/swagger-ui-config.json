@@ -1,0 +1,31 @@
+
+{
+  "urls": [
+    {
+      "url": "https://api.beratung.dev/insurance/static/specs/insurance/api.yml",
+      "name": "insurance-api-dev"
+    },
+    {
+      "url": "http://localhost:18000/insurance/static/specs/insurance/api.yml",
+      "name": "insurance-api-local"
+    },
+    {
+      "url": "https://api.beratung.dev/profile/static/specs/profile/api.yml",
+      "name": "profile-api-dev"
+    },
+    {
+      "url": "http://localhost:28000/profile/static/specs/profile/api.yml",
+      "name": "profile-api-local"
+    }
+
+  ],
+  "urls.primaryName": "insurance-api-dev",
+  "dom_id": "#swagger-ui",
+  "deepLinking": true,
+  "displayRequestDuration": true,
+  "filter": false,
+  "showCommonExtensions": true,
+  "docExpansion": "none",
+  "layout": "StandaloneLayout",
+  "validatorUrl": false
+}
