@@ -3,17 +3,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
+    <title>API | moneymeets</title>
     <link rel="stylesheet" type="text/css" href="./swagger-ui.css" />
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="https://moneymeets.com/favicons/favicon-vector.svg" />
   </head>
 
   <body>
     <div id="swagger-ui"></div>
     <script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
     <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script src="./swagger-initializer.js" charset="UTF-8"> </script>
+    <!-- <script src="./swagger-initializer.js" charset="UTF-8"> </script> -->
+  <script>
+    window.onload = function() {
+      fetch('./swagger-ui-config.json').then(function (response) {
+            return response.json()
+        }).then(function (json) {
+
+      // Begin Swagger UI call region
+      const ui = SwaggerUIBundle(Object.assign({}, json, {
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+      }));
+      ui.initOAuth({
+        clientId: "moneymeets-app-localhost",
+        appName: "moneymeets-app"
+      })
+      window.ui = ui;
+      })
+  }
+  </script>
   </body>
 </html>
